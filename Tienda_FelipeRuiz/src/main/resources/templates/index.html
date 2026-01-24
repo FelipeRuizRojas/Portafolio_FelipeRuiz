@@ -1,43 +1,101 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-package com.tienda;
+<html>
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>
+        <style>
+            /* Reseteo básico para quitar márgenes por defecto */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.templatemode.TemplateMode;
+            /* Estilos del Encabezado */
+            header {
+                background-color: #7B68EE; 
+                color: white;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-@Configuration
-public class ProjectConfig implements WebMvcConfigurer {
+            header h1 {
+                margin: 0;
+                font-size: 24px;
+            }
 
-    /* Los siguiente métodos son para implementar el tema de seguridad dentro del proyecto */
+            /* Estilos de los Botones de Navegación */
+            .nav-buttons a {
+                background-color: #00b300; 
+                color: white;
+                text-decoration: none;
+                padding: 8px 15px;
+                margin-left: 10px;
+                border-radius: 5px; 
+                font-weight: bold;
+                font-size: 14px;
+            }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/ejemplo2").setViewName("ejemplo2");
-        registry.addViewController("/multimedia").setViewName("multimedia");
-        registry.addViewController("/iframes").setViewName("iframes");
-        registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
-    }
+            .nav-buttons a:hover {
+                background-color: #008000; 
+            }
 
-    /* El siguiente método se utiliza para publicar en la nube, independientemente */
+            
+            .main-container {
+                display: flex;
+                flex: 1; 
+            }
 
-    @Bean
-    public SpringResourceTemplateResolver templateResolver_0() {
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setPrefix("classpath:/templates");
-        resolver.setSuffix(".html");
-        resolver.setTemplateMode(TemplateMode.HTML);
-        resolver.setOrder(0);
-        resolver.setCheckExistence(true);
-        return resolver;
-    }
-}
+            .sidebar {
+                background-color: #FFE4C4;
+                width: 20%; 
+                min-height: 100%;
+            }
 
+            .content {
+                background-color: #DB7093; 
+                width: 80%; 
+                padding: 20px;
+                font-weight: bold;
+            }
+
+            
+            footer {
+                background-color: black;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <header>
+            <h1>TechShop</h1>
+            <nav class="nav-buttons">
+                <a href="ejemplo2.html">Mis Autos</a>
+                <a href="multimedia.html">Multimedia</a>
+                <a href="iframes.html">iFrames</a>
+            </nav>
+        </header>
+
+        <section class="main-container">
+            <div class="sidebar">
+                </div>
+            <div class="content">
+                <h2>Esta es la tienda en línea del curso</h2>
+            </div>
+        </section>
+
+        <footer>
+            Todos los Derechos Reservados TechShop 2025 &COPY;
+        </footer>
+
+    </body>
+</html>
