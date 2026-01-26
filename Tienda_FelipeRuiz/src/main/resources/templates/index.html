@@ -1,101 +1,158 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TechShop</title>
-        <meta charset="UTF-8"/>
-        <style>
-            /* Reseteo básico para quitar márgenes por defecto */
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: Arial, sans-serif;
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
+<head>
+    <title>TechShop</title>
+    <meta charset="UTF-8"/>
 
-            /* Estilos del Encabezado */
-            header {
-                background-color: #7B68EE; 
-                color: white;
-                padding: 15px 30px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-            header h1 {
-                margin: 0;
-                font-size: 24px;
-            }
+        header {
+            background-color: #7B68EE;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            /* Estilos de los Botones de Navegación */
-            .nav-buttons a {
-                background-color: #00b300; 
-                color: white;
-                text-decoration: none;
-                padding: 8px 15px;
-                margin-left: 10px;
-                border-radius: 5px; 
-                font-weight: bold;
-                font-size: 14px;
-            }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
 
-            .nav-buttons a:hover {
-                background-color: #008000; 
-            }
+        .nav-buttons button {
+            background-color: #00b300;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
-            
-            .main-container {
-                display: flex;
-                flex: 1; 
-            }
+        .nav-buttons button:hover {
+            background-color: #008000;
+        }
 
-            .sidebar {
-                background-color: #FFE4C4;
-                width: 20%; 
-                min-height: 100%;
-            }
+        .main-container {
+            display: flex;
+            flex: 1;
+        }
 
-            .content {
-                background-color: #DB7093; 
-                width: 80%; 
-                padding: 20px;
-                font-weight: bold;
-            }
+        .sidebar {
+            background-color: #FFE4C4;
+            width: 20%;
+        }
 
-            
-            footer {
-                background-color: black;
-                color: white;
-                text-align: center;
-                padding: 10px;
-                font-size: 12px;
-            }
-        </style>
-    </head>
-    <body>
+        .content {
+            background-color: #DB7093;
+            width: 80%;
+            padding: 20px;
+            font-weight: bold;
+        }
+
         
-        <header>
-            <h1>TechShop</h1>
-            <nav class="nav-buttons">
-                <a href="ejemplo2.html">Mis Autos</a>
-                <a href="multimedia.html">Multimedia</a>
-                <a href="iframes.html">iFrames</a>
-            </nav>
-        </header>
+        .seccion {
+            display: none;
+        }
 
-        <section class="main-container">
-            <div class="sidebar">
-                </div>
-            <div class="content">
-                <h2>Esta es la tienda en línea del curso</h2>
-            </div>
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+        }
+    </style>
+
+    <script>
+        function mostrarSeccion(id) {
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(s => s.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</head>
+
+<body>
+
+<header>
+    <h1>TechShop</h1>
+    <nav class="nav-buttons">
+        <button onclick="mostrarSeccion('autos')">Mis Autos</button>
+        <button onclick="mostrarSeccion('multimedia')">Multimedia</button>
+        <button onclick="mostrarSeccion('iframes')">iFrames</button>
+    </nav>
+</header>
+
+<section class="main-container">
+    <div class="sidebar"></div>
+
+    <div class="content">
+
+        <!-- ================= AUTOS ================= -->
+        <section id="autos" class="seccion">
+            <h2>Mis Autos</h2>
+
+            <h3>Lunes</h3>
+            <img src="/img/lunes.jpg" width="300">
+
+            <h3>Martes</h3>
+            <img src="https://www.record.com.mx/sites/default/files/articulos/2023/03/30/hennessey_venom_f5_roadster-6.jpg"
+                 width="300">
         </section>
 
-        <footer>
-            Todos los Derechos Reservados TechShop 2025 &COPY;
-        </footer>
+        <!-- ================= MULTIMEDIA ================= -->
+        <section id="multimedia" class="seccion">
+            <h2>Multimedia</h2>
 
-    </body>
+            <h3>Música Celta</h3>
+            <audio controls>
+                <source src="/audios/musica.mp3" type="audio/mpeg">
+            </audio>
+
+            <h3>Película de Acción</h3>
+            <video width="320" height="240" controls>
+                <source src="/videos/torpedo.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <!-- ================= IFRAMES ================= -->
+        <section id="iframes" class="seccion">
+            <h2>IFrames</h2>
+
+            <h3>Sitio Web</h3>
+            <iframe src="https://ufidelitas.ac.cr" width="900" height="400"></iframe>
+
+            <h3>YouTube</h3>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/Q7FFjJFw8vM"
+                    allowfullscreen>
+            </iframe>
+
+            <h3>Ubicación</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1572.183153571374!2d-84.00668099999994!3d9.9333514"
+                width="600" height="450">
+            </iframe>
+        </section>
+
+    </div>
+</section>
+
+<footer>
+    Todos los Derechos Reservados TechShop 2025 &COPY;
+</footer>
+
+</body>
 </html>
