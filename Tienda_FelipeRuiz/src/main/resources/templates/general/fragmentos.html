@@ -11,17 +11,14 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/fav/favicon-96x96.png"/>
     <link rel="icon" type="image/png" sizes="256x256" href="/fav/favicon-256x256.png"/>
     
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/7.0.0/css/all.min.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
 </head>
 
 <body>
     <header th:fragment="header" class="header">
-        <nav class="navbar navbar-expand-sm p-0">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="container">
                 <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -94,9 +91,11 @@
     </header>
 
     <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white">
-        <p class="lead text-center">
-            [[#{plantilla.derechos}]] &COPY;
-        </p>
+        <div class="container">
+            <p class="lead text-center">
+                [[#{plantilla.derechos}]] &COPY;
+            </p>
+        </div>
     </footer>
 
 </body>
