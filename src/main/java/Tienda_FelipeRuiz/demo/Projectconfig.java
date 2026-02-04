@@ -1,11 +1,11 @@
 package Tienda_FelipeRuiz.demo;
 
 import java.util.Locale;
-import org.springframework.boot.autoconfigure.web.WebProperties.LocaleResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,11 +14,8 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-
 @Configuration
 public class Projectconfig implements WebMvcConfigurer {
-
-    /* Métodos para configurar las vistas sin controlador */
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -30,8 +27,6 @@ public class Projectconfig implements WebMvcConfigurer {
         registry.addViewController("/registro/nuevo").setViewName("registro/nuevo");
     }
 
-    /* Resolver de plantillas Thymeleaf */
-
     @Bean
     public SpringResourceTemplateResolver templateResolver_0() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
@@ -42,34 +37,31 @@ public class Projectconfig implements WebMvcConfigurer {
         resolver.setCheckExistence(true);
         return resolver;
     }
-    
+
     @Bean
-    public SessionLocaleResolver localeResolver() {
-    var slr = new SessionLocaleResolver();
-    slr.setDefaultLocale(Locale.getDefault());
-    slr.setLocaleAttributeName("session.current.locale");
-    slr.setTimeZoneAttributeName("session.current.timezone");
-    return slr;
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.getDefault());
+        return slr;
     }
 
     @Bean
-public LocaleChangeInterceptor localeChangeInterceptor() {
-    var lci = new LocaleChangeInterceptor();
-    lci.setParamName("lang");
-    return lci;
-}
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
+    }
 
-@Override
-public void addInterceptors(InterceptorRegistry registro) {
-    registro.addInterceptor(localeChangeInterceptor());
-}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
 
-
-@Bean("messageSource")
-public MessageSource messageSource() {
-    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-    messageSource.setBasenames("messages");
-    messageSource.setDefaultEncoding("UTF-8");
-    return messageSource;
-}
+    @Bean("messageSource")
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
+        ms.setBasenames("messages");
+        ms.setDefaultEncoding("UTF-8");
+        return ms;
+    }
 }
