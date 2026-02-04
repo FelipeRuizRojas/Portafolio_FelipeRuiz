@@ -2,51 +2,95 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    
-    <head th:replace="~{general/plantilla :: head}"/>
-    
-    <body>
-        <section th:fragment="agregar">
-            <div class="container py-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarCategoria">
-                    <i class="fas fa-plus"></i> [[#{categoria.boton.agregar}]]
-                </button>
-            </div>
-        </section>
 
-        <section th:fragment="listado" class="p-3">
-            <div class="row p-3">
+<head th:replace="~{general/plantilla :: head}">
+    <title>TechShop - Listado</title>
+</head>
+
+<body>
+
+    <section th:fragment="agregar" class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary w-100 shadow-sm" data-bs-toggle="modal" data-bs-target="#agregarCategoria">
+                        <i class="fas fa-plus"></i> [[#{categoria.boton.agregar}]]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section th:fragment="listado" id="categorias" class="py-2">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-9">
-                    <div class="card p-2">
-                        <div class="card-header">
-                            <h4>[[#{categoria.listado}]]</h4>
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h4 class="mb-0">[[#{categoria.listado}]]</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div th:if="${categorias != null and !categorias.empty}">
-                                <table class="table table-striped table-hover">
-                                    <thead>
+                                <table class="table table-striped table-hover align-middle mb-0">
+                                    <thead class="table-light">
                                         <tr>
-                                            <th>#</th>
+                                            <th class="ps-3">#</th>
                                             <th>[[#{categoria.descripcion}]]</th>
                                             <th>[[#{categoria.imagen}]]</th>
                                             <th>[[#{categoria.activo}]]</th>
-                                            <th></th>
+                                            <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="c : ${categorias}">
-                                            <td>[[${c.idCategoria}]]</td>
-                                            <td>[[${c.descripcion}]]</td>
+                                        <tr th:each="c, contador : ${categorias}">
+                                            <td class="ps-3">[[${contador.count}]]</td>
+                                            <td class="fw-bold">[[${c.descripcion}]]</td>
                                             <td>
-                                                <img th:src="@{${c.rutaImagen}}" alt="noData" height="75"/>
+                                                <img th:src="@{${c.rutaImagen}}" alt="Imagen" 
+                                                     class="rounded shadow-sm" 
+                                                     style="height: 60px; width: 90px; object-fit: cover;"/>
                                             </td>
-                                            <td th:text="${c.activo} ? 'Activa' : 'Inactiva'"></td>
                                             <td>
-                                                <button type="button" class="btn btn-danger"
+                                                <span th:text="${c.activo} ? 'Activa' : 'Inactiva'"
+                                                      th:class="${c.activo} ? 'text-dark' : 'text-danger'">
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-danger btn-sm me-2"
                                                         data-bs-toggle="modal" data-bs-target="#confirmModal"
                                                         th:data-bs-id="${c.idCategoria}"
                                                         th:data-bs-descripcion="${c.descripcion}">
                                                     <i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]
                                                 </button>
-                                                <a th:href="@{/categoria/modificar/}+${c.idCategoria}" class="btn btn-success">
-                                                    <i class="fas fa-pencil-alt"></i> [[#{
+                                                <a th:href="@{/categoria/modificar/}+${c.idCategoria}" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-pencil-alt"></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div th:if="${categorias == null or categorias.empty}" class="text-center p-5">
+                                <h5 class="text-muted">No hay categorías registradas actualmente.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card text-center text-white shadow" style="background-color: #157347; border: none;">
+                        <div class="card-body py-4">
+                            <h3 class="card-title h5">[[#{categoria.total}]]</h3>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <i class="fas fa-layer-group fa-2x me-2"></i>
+                                <span class="display-5 fw-bold">[[${totalCategorias}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
