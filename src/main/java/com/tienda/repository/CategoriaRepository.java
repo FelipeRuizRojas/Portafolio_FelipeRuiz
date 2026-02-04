@@ -1,5 +1,5 @@
 package com.tienda.repository;
-
+//ingrgnirngirngin
 import com.tienda.domain.Categoria;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
