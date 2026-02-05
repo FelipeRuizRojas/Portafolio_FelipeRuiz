@@ -6,16 +6,7 @@
         <title>TechShop</title>
     </head>
     
-    <tbody>
-    <tr th:each="categoria : ${categorias}">
-        <td th:text="${categoria.idCategoria}"></td>
-        <td th:text="${categoria.descripcion}"></td>
-        <td>
-            <img th:src="@{${categoria.rutaImagen}}" alt="Imagen" width="100"/>
-        </td>
-        <td th:text="${categoria.activo ? 'Activa' : 'Inactiva'}"></td>
-    </tr>
-    </tbody>
+    
     <body>
         <header th:replace="~{general/fragmentos :: header}"/>
         

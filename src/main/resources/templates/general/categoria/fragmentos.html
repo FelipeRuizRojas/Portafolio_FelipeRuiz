@@ -12,10 +12,10 @@
     <section th:fragment="agregar" class="py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary w-100 shadow-sm" data-bs-toggle="modal" data-bs-target="#agregarCategoria">
-                        <i class="fas fa-plus"></i> [[#{categoria.boton.agregar}]]
-                    </button>
+                <div class='col-md-3'>
+                    <button type="button" class="btn btn-primary"  sec:authorize="hasRole('ROLE_ADMIN')"
+                            data-bs-toggle="modal" data-bs-target="#agregarCategoriaModal">
+                        <i class="fa-solid fa-plus"></i> [[#{categoria.agregar}]]</button>
                 </div>
             </div>
         </div>
