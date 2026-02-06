@@ -14,6 +14,7 @@
     <link th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
         <link th:href="@{/webjars/font-awesome/7.0.0/css/all.min.css}" rel="stylesheet"/>
         <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
 </head>
 
 <body>
@@ -97,6 +98,49 @@
             </p>
         </div>
     </footer>
+    
+    <section th:fragment="mostrarToast">
+    <div aria-live="polite" aria-atomic="true"
+         class="position-fixed top-50 start-50 translate-middle" style="z-index: 1080;">
+        
+        <div th:if="${error}" class="toast show"
+             role="alert"
+             aria-live="assertive"
+             aria-atomic="true"
+             data-bs-autohide="true">
+            <div class="toast-header text-white bg-danger">
+                <i class="fa-solid fa-bomb"></i>
+                <strong class="me-auto" th:text="${error}"></strong>
+            </div>
+            <div class="toast-body">
+                <p th:text="${error}"></p>
+                <div class="mt-2 pt-2 border-top text-center">
+                    <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="toast" th:text="#{accion.cerrar}"></button>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${todoOk}" class="toast show"
+             role="status"
+             aria-live="polite"
+             aria-atomic="true"
+             data-bs-autohide="true">
+            <div class="toast-header text-white bg-success">
+                <i class="fa-solid fa-square-check"></i>
+                <strong class="me-auto" th:text="#{atencion}"></strong>
+            </div>
+            <div class="toast-body">
+                <p th:text="${todoOk}"></p>
+                <div class="mt-2 pt-2 border-top text-center">
+                    <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="toast" th:text="#{accion.cerrar}"></button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
 
 </body>
 </html>

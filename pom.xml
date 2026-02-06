@@ -31,6 +31,23 @@
 	</properties>
 	<dependencies>
             <dependency>
+                <groupId>com.google.cloud</groupId>
+                <artifactId>libraries-bom</artifactId>
+                <version>26.31.0</version> <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.cloud</groupId>
+                <artifactId>google-cloud-storage</artifactId>
+            </dependency>
+        
+        
+            <dependency>
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-admin</artifactId>
+                <version>9.5.0</version>
+            </dependency>
+            <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
@@ -150,6 +167,36 @@
 	  <groupId>com.guicedee.services</groupId>
 	  <artifactId>jakarta.validation-api</artifactId>
 	  <version>1.2.2.1-jre17</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>com.google.cloud</groupId>
+	  <artifactId>gcloud-java-storage</artifactId>
+	  <version>0.2.8</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>com.google.cloud</groupId>
+	  <artifactId>google-cloud-storage</artifactId>
+	  <version>1.108.0</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>com.artipie</groupId>
+	  <artifactId>asto</artifactId>
+	  <version>0.3.0</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>com.github.paulcwarren</groupId>
+	  <artifactId>spring-content-azure-storage</artifactId>
+	  <version>3.0.17</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>com.google.auth</groupId>
+	  <artifactId>google-auth-library-oauth2-http</artifactId>
+	  <version>1.35.0</version>
 	  <type>jar</type>
 	 </dependency>
 	</dependencies>
